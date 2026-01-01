@@ -6,8 +6,16 @@ router.get('/', (req, res) => {
 	res.render('signup');
 });
 
-router.get('/create', userController.createUserGet);
+router.get(
+	'/create',
 
-router.post('/create', userController.createUserPost);
+	userController.createUserGet
+);
+
+router.post(
+	'/create',
+	userController.validateUser,
+	userController.createUserPost
+);
 
 module.exports = router;
