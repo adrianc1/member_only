@@ -8,6 +8,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const pool = require('./db/pool.js');
 const signupRoute = require('./routes/signupRoute.js');
+const { body, validationResult } = require('express-validator');
 
 require('dotenv').config();
 
@@ -32,6 +33,32 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+const nameValidators = [
+	body('firstName')
+		.trim()
+		.notEmpty()
+		.withMessage('First name cannot be empty')
+		.isAlpha()
+		.withMessage('First name must only contain letters'),
+
+	body('lastName')
+		.trim()
+		.notEmpty()
+		.withMessage('Last name cannot be empty')
+		.isAlpha()
+		.withMessage('Last name must only contain letters'),
+];
+
+const controller = (req, res, next) => {
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).render('index', {
+			errors: errors.array(),
+		});
+	}
+
+	res.redirect('/sucess');
+};
 app.get('/', (req, res) => {
 	res.send(`<h1>WELCOME TO THE CLUB</h1>
 		<p>Sign up <a href='/signup'> here </a> </p>
