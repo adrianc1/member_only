@@ -16,7 +16,7 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
 	session({
@@ -57,12 +57,11 @@ const controller = (req, res, next) => {
 		});
 	}
 
-	res.redirect('/sucess');
+	res.redirect('index', { errors: 'hey all good here' });
 };
+
 app.get('/', (req, res) => {
-	res.send(`<h1>WELCOME TO THE CLUB</h1>
-		<p>Sign up <a href='/signup'> here </a> </p>
-		`);
+	res.render('index');
 });
 
 app.use('/signup', signupRoute);
