@@ -10,13 +10,29 @@
 		<%- include("partials/errors.ejs") %>
 		<form action="/signup/create" method="POST">
 			<label for="firstName">First Name</label>
-			<input type="text" id="firstName" name="firstName" />
+			<input
+				type="text"
+				id="firstName"
+				name="firstName"
+				value="<%= locals.firstName %>"
+			/>
 
 			<label for="lastName">Last Name</label>
-			<input type="text" id="lastName" name="lastName" />
+			<input
+				type="text"
+				id="lastName"
+				name="lastName"
+				value="<%= locals.lastName %>"
+			/>
 
 			<label for="email">Email</label>
-			<input type="email" id="email" name="email" type="email" />
+			<input
+				type="email"
+				id="email"
+				name="email"
+				type="email"
+				value="<%= locals.email %>"
+			/>
 
 			<label for="password">Password</label>
 			<input type="password" id="password" name="password" />
