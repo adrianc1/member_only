@@ -33,12 +33,20 @@ const validateUser = [
 		.withMessage('passwords do not match!'),
 ];
 
+const getUsersList = async (req, res, next) => {
+	res.render('list', {
+		title: 'Users List',
+		users: await db.getUsersList(),
+	});
+};
+
 const createUserGet = async (req, res, next) => {
 	res.render('signup');
 };
 const createUserPost = async (req, res) => {
 	const errors = validationResult(req);
-	const { firstName, lastName, email, password, confirmPassword } = req.body;
+	const { firstName, lastName, email, password, confirmPassword } =
+		matchedData(req);
 	if (!errors.isEmpty()) {
 		return res
 			.status(400)
@@ -54,4 +62,5 @@ module.exports = {
 	createUserPost,
 	createUserGet,
 	validateUser,
+	getUsersList,
 };

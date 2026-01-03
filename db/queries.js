@@ -9,6 +9,13 @@ const createUser = async (firstName, lastName, email, password) => {
 	return rows[0];
 };
 
+const getUsersList = async () => {
+	const { rows } = await pool.query(`
+		SELECT * FROM users`);
+	return rows;
+};
+
 module.exports = {
 	createUser,
+	getUsersList,
 };
