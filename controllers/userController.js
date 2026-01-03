@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const db = require('../db/queries.js');
 const { body, validationResult, matchedData } = require('express-validator');
 
@@ -45,15 +46,14 @@ const createUserGet = async (req, res, next) => {
 };
 const createUserPost = async (req, res) => {
 	const errors = validationResult(req);
-	const { firstName, lastName, email, password, confirmPassword } =
-		matchedData(req);
+	const { firstName, lastName, email } = matchedData(req);
 	if (!errors.isEmpty()) {
 		return res
 			.status(400)
 			.render('signup', { errors: errors.array(), firstName, lastName, email });
 	}
-
-	const user = await db.createUser(firstName, lastName, email, password);
+	const hashedPassword = await bcrypt.hash(req.body.password, 10);
+	const user = await db.createUser(firstName, lastName, email, hashedPassword);
 	console.log(`${user.first_name} ${user.last_name} user created!`);
 	res.redirect('/');
 };

@@ -15,7 +15,10 @@ const getUsersList = async () => {
 	return rows;
 };
 
+const deleteUser = async () => {};
+
 module.exports = {
 	createUser,
 	getUsersList,
+	deleteUser,
 };

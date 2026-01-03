@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const path = require('node:path');
 const { Pool } = require('pg');
 const express = require('express');
@@ -31,17 +32,6 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
-const controller = (req, res, next) => {
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).render('index', {
-			errors: errors.array(),
-		});
-	}
-
-	res.redirect('index', { errors: 'hey all good here' });
-};
 
 app.get('/', (req, res) => {
 	res.render('index');
