@@ -11,6 +11,7 @@ router.post(
 );
 
 router.get('/secret', userController.checkSecretPhraseGet);
+
 router.post('/secret', userController.checkSecretPhrase);
 
 // router.get('/:id/update', userController.userUpdateGet);

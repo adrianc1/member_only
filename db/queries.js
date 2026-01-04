@@ -15,10 +15,18 @@ const getUsersList = async () => {
 	return rows;
 };
 
+const getUser = async (username) => {
+	const { rows } = await pool.query('SELECT * FROM users WHERE username = $1', [
+		username,
+	]);
+	return rows[0];
+};
+
 const deleteUser = async () => {};
 
 module.exports = {
 	createUser,
 	getUsersList,
 	deleteUser,
+	getUser,
 };

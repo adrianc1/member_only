@@ -45,6 +45,7 @@ const getUsersList = async (req, res, next) => {
 const createUserGet = async (req, res, next) => {
 	res.render('signup');
 };
+
 const createUserPost = async (req, res) => {
 	const errors = validationResult(req);
 	const { firstName, lastName, email } = matchedData(req);
@@ -68,10 +69,9 @@ const checkSecretPhrase = (req, res) => {
 	}
 
 	if (secret !== secretPhrase) {
-		return res.status(401).render('club', { error: 'Wrong phrase' });
+		console.log(secret, secretPhrase);
+		return res.status(401).render('club', { error: 'Wrong !' });
 	}
-
-	// success
 	res.send('Welcome!');
 };
 

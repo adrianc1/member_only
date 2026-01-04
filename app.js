@@ -1,23 +1,22 @@
-const bcrypt = require('bcryptjs');
-const path = require('node:path');
+\const path = require('node:path');
 const { Pool } = require('pg');
 const express = require('express');
 const pg = require('pg');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const pool = require('./db/pool.js');
 const signupRoute = require('./routes/signupRoute.js');
 
+require('./config/passport')(passport);
 require('dotenv').config();
 
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(
 	session({
 		store: new pgSession({
