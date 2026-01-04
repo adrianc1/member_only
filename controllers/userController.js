@@ -4,6 +4,7 @@ const { body, validationResult, matchedData } = require('express-validator');
 
 const alphaErr = 'Must only contain letters.';
 const lengthErr = 'must be between 2 and 10 characters';
+const secretPhrase = 'yellow';
 
 const validateUser = [
 	body('firstName')
@@ -47,6 +48,7 @@ const createUserGet = async (req, res, next) => {
 const createUserPost = async (req, res) => {
 	const errors = validationResult(req);
 	const { firstName, lastName, email } = matchedData(req);
+
 	if (!errors.isEmpty()) {
 		return res
 			.status(400)
@@ -58,9 +60,30 @@ const createUserPost = async (req, res) => {
 	res.redirect('/');
 };
 
+const checkSecretPhrase = (req, res) => {
+	const { secret } = req.body;
+
+	if (typeof secret !== 'string') {
+		return res.status(400).render('club', { error: 'Invalid input' });
+	}
+
+	if (secret !== secretPhrase) {
+		return res.status(401).render('club', { error: 'Wrong phrase' });
+	}
+
+	// success
+	res.send('Welcome!');
+};
+
+const checkSecretPhraseGet = async (req, res) => {
+	res.render('club');
+};
+
 module.exports = {
 	createUserPost,
 	createUserGet,
 	validateUser,
 	getUsersList,
+	checkSecretPhrase,
+	checkSecretPhraseGet,
 };

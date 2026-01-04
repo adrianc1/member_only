@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Join the Club!</title>
+	</head>
+	<body>
+		<h1>Join the Club today!</h1>
+		<p>
+			Enter the secret phrase to secure membership to our super secret club!
+		</p>
+
+		<form method="POST" action="/signup/secret">
+			<label for="secret">Enter Secret Phrase: </label>
+			<input type="text" id="secret" name="secret" />
+			<button type="submit">Enter</button>
+		</form>
+
+		<% if (typeof error !== 'undefined') { %>
+		<p class="error"><%= error %></p>
+		<% } %>
+	</body>
+</html>
