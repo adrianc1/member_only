@@ -1,4 +1,4 @@
-\const path = require('node:path');
+const path = require('node:path');
 const { Pool } = require('pg');
 const express = require('express');
 const pg = require('pg');
@@ -7,6 +7,7 @@ const pgSession = require('connect-pg-simple')(session);
 const passport = require('passport');
 const pool = require('./db/pool.js');
 const signupRoute = require('./routes/signupRoute.js');
+const loginRouter = require('./routes/loginRouter.js');
 
 require('./config/passport')(passport);
 require('dotenv').config();
@@ -19,15 +20,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
 	session({
-		store: new pgSession({
-			pool: pool,
-			tableName: 'session',
-		}),
+		// dev env
 		secret: process.env.COOKIE_SECRET,
 		resave: false,
 		saveUninitialized: false,
-		cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
+		cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
 	})
+	// session({
+	// 	store: new pgSession({
+	// 		pool: pool,
+	// 		tableName: 'session',
+	// 	}),
+	// 	secret: process.env.COOKIE_SECRET,
+	// 	resave: false,
+	// 	saveUninitialized: false,
+	// 	cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }, // 30 days
+	// })
 );
 app.use(passport.initialize());
 app.use(passport.session());
@@ -37,6 +45,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/signup', signupRoute);
+app.use('/login', loginRouter);
 
 app.listen(process.env.PORT, () => {
 	console.log(`port listening on port ${process.env.PORT}`);

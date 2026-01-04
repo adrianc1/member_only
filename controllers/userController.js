@@ -25,8 +25,12 @@ const validateUser = [
 		.withMessage(`Must enter a valid email`)
 		.isLength({ min: 1 })
 		.withMessage(`Email must at least contain 1 character `),
+	body('username')
+		.isLength({ min: 1 })
+		.withMessage(`username must at least contain 1 character `),
+	,
 	body('password')
-		.isLength({ min: 8 })
+		.isLength({ min: 4 })
 		.withMessage('password must be at least 8 characters'),
 	body('confirmPassword')
 		.custom((value, { req }) => {
@@ -48,7 +52,7 @@ const createUserGet = async (req, res, next) => {
 
 const createUserPost = async (req, res) => {
 	const errors = validationResult(req);
-	const { firstName, lastName, email } = matchedData(req);
+	const { firstName, lastName, email, username } = matchedData(req);
 
 	if (!errors.isEmpty()) {
 		return res
@@ -56,7 +60,13 @@ const createUserPost = async (req, res) => {
 			.render('signup', { errors: errors.array(), firstName, lastName, email });
 	}
 	const hashedPassword = await bcrypt.hash(req.body.password, 10);
-	const user = await db.createUser(firstName, lastName, email, hashedPassword);
+	const user = await db.createUser(
+		firstName,
+		lastName,
+		email,
+		username,
+		hashedPassword
+	);
 	console.log(`${user.first_name} ${user.last_name} user created!`);
 	res.redirect('/');
 };
@@ -79,6 +89,10 @@ const checkSecretPhraseGet = async (req, res) => {
 	res.render('club');
 };
 
+const getLoginPage = (req, res) => {
+	res.render('login');
+};
+
 module.exports = {
 	createUserPost,
 	createUserGet,
@@ -86,4 +100,5 @@ module.exports = {
 	getUsersList,
 	checkSecretPhrase,
 	checkSecretPhraseGet,
+	getLoginPage,
 };
