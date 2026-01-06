@@ -86,11 +86,15 @@ const checkSecretPhrase = (req, res) => {
 };
 
 const checkSecretPhraseGet = async (req, res) => {
-	res.render('club');
+	res.render('club', { logged_user: req.user.username });
 };
 
 const getLoginPage = (req, res) => {
-	res.render('login');
+	if (!req.user) {
+		res.render('login');
+		return;
+	}
+	res.render('club', { logged_user: req.user.username });
 };
 
 module.exports = {

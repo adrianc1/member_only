@@ -2,13 +2,18 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController.js');
 const passport = require('passport');
-router.get('/', userController.getLoginPage);
+
+router.get('/', (req, res) => userController.getLoginPage(req, res));
+
 router.post(
 	'/',
 	passport.authenticate('local', {
-		successRedirect: '/',
-		failureRedirect: '/signup/create',
+		successRedirect: '/login/club',
+		failureRedirect: '/login',
 	})
 );
+router.get('/club', (req, res) => {
+	userController.checkSecretPhraseGet(req, res);
+});
 
 module.exports = router;

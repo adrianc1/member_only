@@ -7,12 +7,30 @@
 	</head>
 	<body>
 		<h1>please log in</h1>
-		<form action="/login" method="POST">
-			<label for="username">Username</label>
-			<input id="username" name="username" placeholder="username" type="text" />
-			<label for="password">Password</label>
-			<input id="password" name="password" type="password" />
-			<button type="submit">Log In</button>
+		<form action="/login" method="post">
+			<div>
+				<label for="username">Username</label>
+				<input
+					id="username"
+					name="username"
+					type="text"
+					autocomplete="username"
+					required
+				/>
+			</div>
+			<div>
+				<label for="password">Password</label>
+				<input
+					id="password"
+					name="password"
+					type="password"
+					autocomplete="password"
+					required
+				/>
+			</div>
+			<div>
+				<button type="submit">Sign in</button>
+			</div>
 		</form>
 	</body>
 </html>
