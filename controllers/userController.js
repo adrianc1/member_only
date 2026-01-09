@@ -103,6 +103,11 @@ const userUpdateGet = async (req, res) => {
 	res.render('updateUser', { user: user });
 };
 
+const userUpdatePost = (req, res) => {
+	const errors = validationResult(req);
+	const { firstName, lastName, email, username } = matchedData(req);
+};
+
 module.exports = {
 	createUserPost,
 	createUserGet,
@@ -112,4 +117,5 @@ module.exports = {
 	checkSecretPhraseGet,
 	getLoginPage,
 	userUpdateGet,
+	userUpdatePost,
 };
