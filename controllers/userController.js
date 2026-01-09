@@ -39,6 +39,15 @@ const validateUser = [
 		.withMessage('passwords do not match!'),
 ];
 
+const validateUserUpdate = [
+	body('firstName').optional().trim().isAlpha().isLength({ min: 2, max: 10 }),
+
+	body('lastName').optional().trim().isAlpha().isLength({ min: 2, max: 10 }),
+
+	body('email').optional().trim().isEmail(),
+
+	body('username').optional().isLength({ min: 1 }),
+];
 const getUsersList = async (req, res, next) => {
 	res.render('list', {
 		title: 'Users List',
@@ -99,13 +108,35 @@ const getLoginPage = (req, res) => {
 
 const userUpdateGet = async (req, res) => {
 	const user = await db.getUserById(req.params.id);
-	console.log('hey this is ', user);
 	res.render('updateUser', { user: user });
 };
 
-const userUpdatePost = (req, res) => {
+const userUpdatePost = async (req, res) => {
 	const errors = validationResult(req);
+	const id = parseInt(req.params.id);
+	console.log('id is', id);
 	const { firstName, lastName, email, username } = matchedData(req);
+
+	if (!errors.isEmpty()) {
+		return res.status(400).render('signup', {
+			errors: errors.array(),
+			firstName,
+			lastName,
+			email,
+			username,
+		});
+	}
+
+	console.log({
+		firstName,
+		lastName,
+		email,
+		username,
+		id,
+	});
+
+	const user = await db.updateUserDB(firstName, lastName, email, username, id);
+	res.redirect('/signup/list');
 };
 
 module.exports = {
@@ -118,4 +149,5 @@ module.exports = {
 	getLoginPage,
 	userUpdateGet,
 	userUpdatePost,
+	validateUserUpdate,
 };

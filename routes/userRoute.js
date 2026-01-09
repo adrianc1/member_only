@@ -6,7 +6,11 @@ router.get('/', (req, res) => {
 	res.render('index');
 });
 router.get('/:id/update', userController.userUpdateGet);
-router.post('/:id/update', userController.userUpdatePost);
+router.post(
+	'/:id/update',
+	userController.validateUserUpdate,
+	userController.userUpdatePost
+);
 // usersRouter.post('/:id/delete', usersController.usersDeletePost);
 
 module.exports = router;

@@ -36,7 +36,7 @@ const updateUserDB = async (first_name, last_name, email, username, id) => {
 	last_name = $2,
 	email = $3,
 	username = $4
-	WHERE id = $7`,
+	WHERE id = $5`,
 		[first_name, last_name, email, username, id]
 	);
 	return user;
