@@ -8,6 +8,7 @@ const passport = require('passport');
 const pool = require('./db/pool.js');
 const signupRoute = require('./routes/signupRoute.js');
 const loginRouter = require('./routes/loginRouter.js');
+const userRoute = require('./routes/userRoute.js');
 
 require('./config/passport')(passport);
 require('dotenv').config();
@@ -40,10 +41,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res) => {
-	res.render('index');
-});
-
+app.use('/', userRoute);
 app.use('/signup', signupRoute);
 app.use('/login', loginRouter);
 

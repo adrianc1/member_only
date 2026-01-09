@@ -14,8 +14,4 @@ router.get('/secret', userController.checkSecretPhraseGet);
 
 router.post('/secret', userController.checkSecretPhrase);
 
-// router.get('/:id/update', userController.userUpdateGet);
-// router.post('/:id/update', userController.userUpdatePost);
-// usersRouter.post('/:id/delete', usersController.usersDeletePost);
-
 module.exports = router;

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>Edit User <%= user.user %></h1>
+		<%- include("partials/errors.ejs") %>
+		<form action="/<%=user.id%>/update" method="POST">
+			<label for="firstName">First Name</label>
+			<input
+				type="text"
+				id="firstName"
+				name="firstName"
+				value="<%= user.firstName %>"
+			/>
+
+			<label for="lastName">Last Name</label>
+			<input
+				type="text"
+				id="lastName"
+				name="lastName"
+				value="<%= user.lastName %>"
+			/>
+
+			<label for="email">Email</label>
+			<input
+				type="email"
+				id="email"
+				name="email"
+				type="email"
+				value="<%= user.email %>"
+			/>
+
+			<label for="username">Username: </label>
+			<input
+				type="username"
+				id="username"
+				name="username"
+				value="<%= user.username %>"
+			/>
+
+			<button type="submit">Update User</button>
+		</form>
+	</body>
+</html>

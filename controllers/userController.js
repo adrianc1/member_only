@@ -97,6 +97,12 @@ const getLoginPage = (req, res) => {
 	res.render('club', { logged_user: req.user.username });
 };
 
+const userUpdateGet = async (req, res) => {
+	const user = await db.getUserById(req.params.id);
+	console.log('hey this is ', user);
+	res.render('updateUser', { user: user });
+};
+
 module.exports = {
 	createUserPost,
 	createUserGet,
@@ -105,4 +111,5 @@ module.exports = {
 	checkSecretPhrase,
 	checkSecretPhraseGet,
 	getLoginPage,
+	userUpdateGet,
 };

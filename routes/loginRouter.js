@@ -14,6 +14,7 @@ router.post(
 );
 router.get('/club', (req, res) => {
 	userController.checkSecretPhraseGet(req, res);
+	console.log(`logged in as ${req.user.username}`);
 });
 
 module.exports = router;
