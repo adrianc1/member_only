@@ -42,7 +42,10 @@ const updateUserDB = async (first_name, last_name, email, username, id) => {
 	return user;
 };
 
-const deleteUser = async () => {};
+const deleteUser = async (id) => {
+	const { rows } = await pool.query('DELETE FROM users WHERE id=$1', [id]);
+	return rows;
+};
 
 module.exports = {
 	createUser,

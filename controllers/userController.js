@@ -139,6 +139,13 @@ const userUpdatePost = async (req, res) => {
 	res.redirect('/signup/list');
 };
 
+const deleteUser = async (req, res) => {
+	const id = req.params.id;
+	console.log(id);
+	const deletedUser = await db.deleteUser(id);
+	res.redirect('/signup/list');
+};
+
 module.exports = {
 	createUserPost,
 	createUserGet,
@@ -150,4 +157,5 @@ module.exports = {
 	userUpdateGet,
 	userUpdatePost,
 	validateUserUpdate,
+	deleteUser,
 };

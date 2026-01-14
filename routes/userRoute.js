@@ -11,6 +11,6 @@ router.post(
 	userController.validateUserUpdate,
 	userController.userUpdatePost
 );
-// usersRouter.post('/:id/delete', usersController.usersDeletePost);
+router.post('/:id/delete', userController.deleteUser);
 
 module.exports = router;
