@@ -3,24 +3,49 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/output.css" />
 		<title>Join the Club!</title>
 	</head>
 	<body>
-		<h1>Join the Club today!</h1>
-		<div>
-			You are now logged in as <strong><%= locals.logged_user %></strong>
+		<h1 class="text-4xl font-extrabold text-indigo-700">
+			Join the Club today!
+		</h1>
+		<div class="p-4 bg-gray-100 rounded-lg mt-4">
+			You are now logged in as
+			<span class="text-2xl font-bold text-green-600 ml-2"
+				><%= locals.logged_user %></span
+			>
 		</div>
 		<p>
 			Enter the secret phrase to secure membership to our super secret club!
 		</p>
 
 		<p>Go to List <a href="/list"> here </a></p>
-		<a href="/message"><button>Create a message</button></a>
+
+		<% if (locals.logged_user) { %>
+		<a href="/message">
+			<button
+				class="bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer"
+			>
+				Create a message
+			</button>
+		</a>
+		<% } %>
 
 		<form method="POST" action="/signup/secret">
 			<label for="secret">Enter Secret Phrase: </label>
-			<input type="text" id="secret" name="secret" />
-			<button type="submit">Enter</button>
+			<input
+				type="text"
+				id="secret"
+				name="secret"
+				class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+			/>
+			<button
+				type="submit"
+				class="w-full md:w-auto md:px-10 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer"
+			>
+				Enter
+			</button>
 		</form>
 
 		<% if (typeof error !== 'undefined') { %>
