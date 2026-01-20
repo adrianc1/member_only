@@ -52,6 +52,7 @@ const getUsersList = async (req, res, next) => {
 	res.render('list', {
 		title: 'Users List',
 		users: await db.getUsersList(),
+		logged_user: req.user?.username,
 	});
 };
 
@@ -74,7 +75,7 @@ const createUserPost = async (req, res) => {
 		lastName,
 		email,
 		username,
-		hashedPassword
+		hashedPassword,
 	);
 	console.log(`${user.first_name} ${user.last_name} user created!`);
 	res.redirect('/');
@@ -95,7 +96,7 @@ const checkSecretPhrase = (req, res) => {
 };
 
 const checkSecretPhraseGet = async (req, res) => {
-	res.render('club', { logged_user: req.user.username });
+	res.render('club', { logged_user: req.user?.username });
 };
 
 const getLoginPage = (req, res) => {
@@ -103,7 +104,7 @@ const getLoginPage = (req, res) => {
 		res.render('login');
 		return;
 	}
-	res.render('club', { logged_user: req.user.username });
+	res.render('club', { logged_user: req.user?.username });
 };
 
 const userUpdateGet = async (req, res) => {
@@ -136,14 +137,14 @@ const userUpdatePost = async (req, res) => {
 	});
 
 	const user = await db.updateUserDB(firstName, lastName, email, username, id);
-	res.redirect('/signup/list');
+	res.redirect('/list');
 };
 
 const deleteUser = async (req, res) => {
 	const id = req.params.id;
 	console.log(id);
 	const deletedUser = await db.deleteUser(id);
-	res.redirect('/signup/list');
+	res.redirect('/list');
 };
 
 const postMessageGet = async (req, res) => {
