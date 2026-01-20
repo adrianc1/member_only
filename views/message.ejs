@@ -10,7 +10,7 @@
 		<div class="p-4 bg-gray-100 rounded-lg mt-4">
 			You are now logged in as
 			<span class="text-2xl font-bold text-green-600 ml-2"
-				><%= locals.logged_user %></span
+				><%= logged_user %></span
 			>
 		</div>
 		<form
@@ -19,12 +19,20 @@
 			class="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-xl border border-gray-200"
 		>
 			<div class="flex flex-col gap-2">
-				<label for="message" class="text-sm font-semibold text-gray-600">
+				<label for="title">Title</label>
+				<input
+					type="text"
+					id="title"
+					name="title"
+					class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+				/>
+
+				<label for="body" class="text-sm font-semibold text-gray-600">
 					Message
 				</label>
 				<textarea
-					id="message"
-					name="message"
+					id="body"
+					name="body"
 					rows="4"
 					placeholder="Write your message..."
 					class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"

@@ -53,6 +53,23 @@ const updateUserDB = async (first_name, last_name, email, username, id) => {
 	return user;
 };
 
+const updateMembershipStatus = async (id, status = true) => {
+	try {
+		const { rows } = await pool.query(
+			`UPDATE users
+		SET membership_status = $1
+		WHERE id = $2
+		RETURNING *
+		`,
+			[status, id],
+		);
+		return rows[0];
+	} catch (error) {
+		console.error('Failed to update membership status:', error);
+		throw error;
+	}
+};
+
 const deleteUser = async (id) => {
 	const { rows } = await pool.query('DELETE FROM users WHERE id=$1', [id]);
 	return rows;
@@ -66,4 +83,5 @@ module.exports = {
 	getUserById,
 	updateUserDB,
 	createMessage,
+	updateMembershipStatus,
 };

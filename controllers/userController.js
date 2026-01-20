@@ -80,7 +80,7 @@ const createUserPost = async (req, res) => {
 	res.redirect('/');
 };
 
-const checkSecretPhrase = (req, res) => {
+const checkSecretPhrase = async (req, res) => {
 	const { secret } = req.body;
 
 	if (typeof secret !== 'string') {
@@ -91,7 +91,9 @@ const checkSecretPhrase = (req, res) => {
 		console.log(secret, secretPhrase);
 		return res.status(401).render('club', { error: 'Wrong !' });
 	}
-	res.send('Welcome!');
+	const user = await db.updateMembershipStatus(req.user.id);
+	const users = await db.getUsersList();
+	res.render('list', { title: `welcome to da club ${user.first_name}`, users });
 };
 
 const checkSecretPhraseGet = async (req, res) => {

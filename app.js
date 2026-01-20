@@ -42,6 +42,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
 // logged in user
 app.use((req, res, next) => {
 	res.locals.logged_user = req.user?.username ? req.user.username : 'Guest';
