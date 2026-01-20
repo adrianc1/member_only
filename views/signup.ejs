@@ -7,43 +7,100 @@
 		<title>Sign Up Form</title>
 	</head>
 	<body>
-		<h1 class="text-sm font-bold underline">THE SIGN UP FORM!</h1>
+		<h1 class="text-3xl font-bold underline">THE SIGN UP FORM!</h1>
 		<%- include("partials/errors.ejs") %>
-		<form action="/signup/create" method="POST">
-			<label for="firstName">First Name</label>
-			<input
-				type="text"
-				id="firstName"
-				name="firstName"
-				value="<%= locals.firstName %>"
-			/>
+		<form
+			action="/signup/create"
+			method="POST"
+			class="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-xl border border-gray-200"
+		>
+			<h2 class="text-2xl font-bold mb-6 text-gray-800">Create Account</h2>
 
-			<label for="lastName">Last Name</label>
-			<input
-				type="text"
-				id="lastName"
-				name="lastName"
-				value="<%= locals.lastName %>"
-			/>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+				<div class="flex flex-col gap-2">
+					<label for="firstName" class="text-sm font-semibold text-gray-600"
+						>First Name</label
+					>
+					<input
+						type="text"
+						id="firstName"
+						name="firstName"
+						value="<%= locals.firstName %>"
+						class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+					/>
+				</div>
 
-			<label for="email">Email</label>
-			<input
-				type="email"
-				id="email"
-				name="email"
-				type="email"
-				value="<%= locals.email %>"
-			/>
+				<div class="flex flex-col gap-2">
+					<label for="lastName" class="text-sm font-semibold text-gray-600"
+						>Last Name</label
+					>
+					<input
+						type="text"
+						id="lastName"
+						name="lastName"
+						value="<%= locals.lastName %>"
+						class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+					/>
+				</div>
 
-			<label for="username">Username: </label>
-			<input type="username" id="username" name="username" />
+				<div class="flex flex-col gap-2">
+					<label for="email" class="text-sm font-semibold text-gray-600"
+						>Email Address</label
+					>
+					<input
+						type="email"
+						id="email"
+						name="email"
+						value="<%= locals.email %>"
+						class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+					/>
+				</div>
 
-			<label for="password">Password</label>
-			<input type="password" id="password" name="password" />
+				<div class="flex flex-col gap-2">
+					<label for="username" class="text-sm font-semibold text-gray-600"
+						>Username</label
+					>
+					<input
+						type="text"
+						id="username"
+						name="username"
+						class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+					/>
+				</div>
 
-			<label for="confirmPassword">Confirm Password</label>
-			<input type="password" id="confirmPassword" name="confirmPassword" />
-			<button type="submit">Create User</button>
+				<div class="flex flex-col gap-2">
+					<label for="password" class="text-sm font-semibold text-gray-600"
+						>Password</label
+					>
+					<input
+						type="password"
+						id="password"
+						name="password"
+						class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+					/>
+				</div>
+
+				<div class="flex flex-col gap-2">
+					<label
+						for="confirmPassword"
+						class="text-sm font-semibold text-gray-600"
+						>Confirm Password</label
+					>
+					<input
+						type="password"
+						id="confirmPassword"
+						name="confirmPassword"
+						class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+					/>
+				</div>
+			</div>
+
+			<button
+				type="submit"
+				class="w-full md:w-auto md:px-10 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer mt-4"
+			>
+				Create User
+			</button>
 		</form>
 	</body>
 </html>
