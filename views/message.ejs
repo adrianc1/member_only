@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/output.css" />
+		<title>Create a Message</title>
+	</head>
+	<body>
+		<form
+			action=""
+			method="POST"
+			class="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-xl border border-gray-200"
+		>
+			<div class="flex flex-col gap-2">
+				<label for="message" class="text-sm font-semibold text-gray-600">
+					Message
+				</label>
+				<textarea
+					id="message"
+					name="message"
+					rows="4"
+					placeholder="Write your message..."
+					class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+					required
+				></textarea>
+			</div>
+
+			<div class="mt-6 flex justify-center">
+				<button
+					type="submit"
+					class="w-full md:w-auto md:px-10 bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer"
+				>
+					Post Message
+				</button>
+			</div>
+		</form>
+	</body>
+</html>

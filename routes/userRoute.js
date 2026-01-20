@@ -6,6 +6,7 @@ router.get('/', (req, res) => {
 	res.render('index');
 });
 router.get('/list', userController.getUsersList);
+router.get('/message', userController.postMessageGet);
 router.get('/:id/update', userController.userUpdateGet);
 router.post(
 	'/:id/update',

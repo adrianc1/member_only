@@ -1,9 +1,3 @@
 @import 'tailwindcss';
 
-/* This tells Tailwind to scan your EJS files for classes */
 @source "../../views/**/*.ejs";
-
-/* @theme {
-	--font-sans: 'Inter', ui-sans-serif, system-ui;
-	--color-primary: #1d4ed8;
-} */

@@ -146,6 +146,10 @@ const deleteUser = async (req, res) => {
 	res.redirect('/signup/list');
 };
 
+const postMessageGet = async (req, res) => {
+	res.render('message');
+};
+
 module.exports = {
 	createUserPost,
 	createUserGet,
@@ -158,4 +162,5 @@ module.exports = {
 	userUpdatePost,
 	validateUserUpdate,
 	deleteUser,
+	postMessageGet,
 };
