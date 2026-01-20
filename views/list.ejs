@@ -12,6 +12,8 @@
 				><%= logged_user %></span
 			>
 		</div>
+
+		<button><a href="/logout">Log Out</a></button>
 		<ul>
 			<% if (locals.users) {%> <% users.forEach(user => { %>
 			<li>

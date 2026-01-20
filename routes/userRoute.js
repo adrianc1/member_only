@@ -6,6 +6,15 @@ router.get('/', (req, res) => {
 	res.render('index');
 });
 router.get('/list', userController.getUsersList);
+router.get('/logout', (req, res, next) => {
+	req.logout(function (err) {
+		if (err) {
+			return next(err);
+		}
+
+		res.redirect('/');
+	});
+});
 router.get('/:id/update', userController.userUpdateGet);
 router.post(
 	'/:id/update',
