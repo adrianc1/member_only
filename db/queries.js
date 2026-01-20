@@ -4,8 +4,19 @@ const createUser = async (firstName, lastName, email, username, password) => {
 	const { rows } = await pool.query(
 		`INSERT INTO users (first_name, last_name, email, username, password_hash) VALUES ($1, $2, $3, $4, $5)
 		RETURNING *`,
-		[firstName, lastName, email, username, password]
+		[firstName, lastName, email, username, password],
 	);
+	return rows[0];
+};
+
+const createMessage = async (user_id, title, body) => {
+	const { rows } = await pool.query(
+		`
+		INSERT INTO messages (user_id, title, body) VALUES ($1, $2, $3) RETURNING *
+		`,
+		[user_id, title, body],
+	);
+
 	return rows[0];
 };
 
@@ -37,7 +48,7 @@ const updateUserDB = async (first_name, last_name, email, username, id) => {
 	email = $3,
 	username = $4
 	WHERE id = $5`,
-		[first_name, last_name, email, username, id]
+		[first_name, last_name, email, username, id],
 	);
 	return user;
 };
@@ -54,4 +65,5 @@ module.exports = {
 	getUserByUsername,
 	getUserById,
 	updateUserDB,
+	createMessage,
 };

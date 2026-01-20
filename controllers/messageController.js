@@ -10,6 +10,9 @@ const postMessageGet = async (req, res) => {
 	}
 };
 
+const postMessagePost = async (req, res) => {};
+
 module.exports = {
 	postMessageGet,
+	postMessagePost,
 };
