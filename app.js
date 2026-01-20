@@ -27,7 +27,7 @@ app.use(
 		resave: false,
 		saveUninitialized: false,
 		cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
-	})
+	}),
 	// session({
 	// 	store: new pgSession({
 	// 		pool: pool,
@@ -41,6 +41,11 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+// logged in user
+app.use((req, res, next) => {
+	res.locals.logged_user = req.user?.username ? req.user.username : 'Guest';
+	next();
+});
 
 app.use('/', userRoute);
 app.use('/signup', signupRoute);

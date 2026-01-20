@@ -52,7 +52,6 @@ const getUsersList = async (req, res, next) => {
 	res.render('list', {
 		title: 'Users List',
 		users: await db.getUsersList(),
-		logged_user: req.user?.username,
 	});
 };
 
