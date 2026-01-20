@@ -7,8 +7,14 @@
 		<title>Create a Message</title>
 	</head>
 	<body>
+		<div class="p-4 bg-gray-100 rounded-lg mt-4">
+			You are now logged in as
+			<span class="text-2xl font-bold text-green-600 ml-2"
+				><%= locals.logged_user %></span
+			>
+		</div>
 		<form
-			action=""
+			action="/message/post"
 			method="POST"
 			class="max-w-2xl mx-auto p-8 bg-white shadow-lg rounded-xl border border-gray-200"
 		>

@@ -9,6 +9,7 @@ const pool = require('./db/pool.js');
 const signupRoute = require('./routes/signupRoute.js');
 const loginRouter = require('./routes/loginRouter.js');
 const userRoute = require('./routes/userRoute.js');
+const messageRouter = require('./routes/messageRouter.js');
 
 require('./config/passport')(passport);
 require('dotenv').config();
@@ -50,6 +51,7 @@ app.use((req, res, next) => {
 app.use('/', userRoute);
 app.use('/signup', signupRoute);
 app.use('/login', loginRouter);
+app.use('/message', messageRouter);
 
 app.listen(process.env.PORT, () => {
 	console.log(`port listening on port ${process.env.PORT}`);

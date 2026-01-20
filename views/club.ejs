@@ -13,7 +13,7 @@
 		<div class="p-4 bg-gray-100 rounded-lg mt-4">
 			You are now logged in as
 			<span class="text-2xl font-bold text-green-600 ml-2"
-				><%= locals.logged_user %></span
+				><%= logged_user %></span
 			>
 		</div>
 		<p>
@@ -22,7 +22,7 @@
 
 		<p>Go to List <a href="/list"> here </a></p>
 
-		<% if (locals.logged_user) { %>
+		<% if (logged_user) { %>
 		<a href="/message">
 			<button
 				class="bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer"
