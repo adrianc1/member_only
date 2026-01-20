@@ -5,6 +5,7 @@ const userController = require('../controllers/userController.js');
 router.get('/', (req, res) => {
 	res.render('index');
 });
+router.get('/list', userController.getUsersList);
 router.get('/:id/update', userController.userUpdateGet);
 router.post(
 	'/:id/update',

@@ -3,10 +3,11 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../src/output.css" />
 		<title>Sign Up Form</title>
 	</head>
 	<body>
-		<h1>THE SIGN UP FORM!</h1>
+		<h1 class="text-3xl font-bold underline">THE SIGN UP FORM!</h1>
 		<%- include("partials/errors.ejs") %>
 		<form action="/signup/create" method="POST">
 			<label for="firstName">First Name</label>
