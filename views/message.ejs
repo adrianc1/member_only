@@ -7,12 +7,8 @@
 		<title>Create a Message</title>
 	</head>
 	<body>
-		<div class="p-4 bg-gray-100 rounded-lg mt-4">
-			You are now logged in as
-			<span class="text-2xl font-bold text-green-600 ml-2"
-				><%= logged_user %></span
-			>
-		</div>
+		<%- include('partials/header'); -%>
+
 		<form
 			action="/message/post"
 			method="POST"

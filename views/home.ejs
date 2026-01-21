@@ -7,16 +7,9 @@
 		<title>Home Page</title>
 	</head>
 	<body>
-		<h1>homepage or sum</h1>
-        <div class="p-4 bg-gray-100 rounded-lg mt-4">
-			You are now logged in as
-			<span class="text-2xl font-bold text-green-600 ml-2"
-				><%= logged_user %></span
-			>
-		</div>
+       <%- include('partials/header'); -%>
 
-        <h3>Recent Posts</h3>
-
+        <div class="flex w-full justify-between"> <h3>Recent Posts</h3><a href="/index">My Account</a></div>
         <ul class="space-y-4">
   <% posts.forEach(post => { %>
     <li class="border border-gray-200 rounded-lg p-4 shadow-sm bg-white">

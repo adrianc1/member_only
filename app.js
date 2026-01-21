@@ -6,9 +6,9 @@ const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
 const passport = require('passport');
 const pool = require('./db/pool.js');
-const signupRoute = require('./routes/signupRoute.js');
+const signupRouter = require('./routes/signupRouter.js');
 const loginRouter = require('./routes/loginRouter.js');
-const userRoute = require('./routes/userRoute.js');
+const userRouter = require('./routes/userRouter.js');
 const messageRouter = require('./routes/messageRouter.js');
 
 require('./config/passport')(passport);
@@ -49,8 +49,8 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use('/', userRoute);
-app.use('/signup', signupRoute);
+app.use('/', userRouter);
+app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/message', messageRouter);
 

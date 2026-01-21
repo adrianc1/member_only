@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController.js');
+const messageController = require('../controllers/messageController.js');
 
-router.get('/', (req, res) => {
+router.get('/', messageController.getPosts);
+router.get('/index', (req, res) => {
 	res.render('index');
 });
 router.get('/list', userController.getUsersList);

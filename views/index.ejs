@@ -3,12 +3,48 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<link rel="stylesheet" href="css/output.css" />
+		<title>Login/Signup Page</title>
 	</head>
-	<body>
-		<h1>WELCOME TO THE CLUB</h1>
-		<button>Sign up <a href="/signup/create"> here </a></button>
-		<button>Login <a href="/login"> here </a></button>
-		<div><%= locals.errors %></div>
-	</body>
+	<body class="min-h-screen bg-gray-100 flex items-center justify-center">
+  <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-md text-center space-y-6">
+    
+    <h1 class="text-3xl font-bold text-gray-900">
+      Welcome to the Club
+    </h1>
+
+    <%- include('partials/header'); -%>
+
+    <div class="space-y-3">
+      <a
+        href="/signup/create"
+        class="block w-full bg-amber-400 hover:bg-amber-500 text-white font-medium py-2 rounded transition"
+      >
+        Sign Up
+      </a>
+
+      <a
+        href="/login"
+        class="block w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded transition"
+      >
+        Login
+      </a>
+    </div>
+
+    <a
+      href="/"
+      class="block text-sm text-gray-500 hover:text-gray-700"
+    >
+      ← Back to homepage
+    </a>
+
+    <% if (locals.errors) { %>
+      <div class="text-sm text-red-600 bg-red-50 border border-red-200 rounded p-2">
+        <%= locals.errors %>
+      </div>
+    <% } %>
+
+  </div>
+</body>
+
 </html>
