@@ -11,14 +11,19 @@ const postMessageGet = async (req, res) => {
 };
 
 const postMessagePost = async (req, res) => {
-	console.log('user', req.user);
-	console.log('body', req.body);
 	await db.createMessage(req.user.id, req.body.title, req.body.body);
 	const users = await db.getUsersList();
 	res.render('list', { title: 'Post Successful', users });
 };
 
+const getPosts = async (req, res) => {
+	const test = await db.joinPosts();
+	console.log(test, 'this is thiout!!!!');
+	res.render('home');
+};
+
 module.exports = {
 	postMessageGet,
 	postMessagePost,
+	getPosts,
 };

@@ -75,6 +75,24 @@ const deleteUser = async (id) => {
 	return rows;
 };
 
+const joinPosts = async () => {
+	const { rows } = await pool.query(`
+		SELECT 
+		messages.id AS message_id,
+		messages.title,
+		messages.body,
+		messages.created_at,
+		users.id AS user_id,
+		users.username,
+		users.first_name,
+		users.last_name
+		FROM messages
+		JOIN users
+		ON messages.user_id = users.id
+		 `);
+	return rows;
+};
+
 module.exports = {
 	createUser,
 	getUsersList,
@@ -84,4 +102,5 @@ module.exports = {
 	updateUserDB,
 	createMessage,
 	updateMembershipStatus,
+	joinPosts,
 };
