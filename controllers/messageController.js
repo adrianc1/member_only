@@ -17,9 +17,10 @@ const postMessagePost = async (req, res) => {
 };
 
 const getPosts = async (req, res) => {
-	const test = await db.joinPosts();
-	console.log(test, 'this is thiout!!!!');
-	res.render('home');
+	const posts = await db.joinPosts();
+	console.log(req.user, 'this is the current user');
+	const user = req.user;
+	res.render('home', { posts, user });
 };
 
 module.exports = {
