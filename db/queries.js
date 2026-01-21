@@ -70,6 +70,22 @@ const updateMembershipStatus = async (id, status = true) => {
 	}
 };
 
+const updateAdminStatus = async (id, status = true) => {
+	try {
+		const { rows } = await pool.query(
+			`UPDATE users
+			SET is_admin = $1
+			WHERE id = $2
+			RETURNING *
+			`,
+			[status, id],
+		);
+		return rows[0];
+	} catch (error) {
+		console.error('Failed to create Admin', error);
+	}
+};
+
 const deleteUser = async (id) => {
 	const { rows } = await pool.query('DELETE FROM users WHERE id=$1', [id]);
 	return rows;
@@ -102,5 +118,6 @@ module.exports = {
 	updateUserDB,
 	createMessage,
 	updateMembershipStatus,
+	updateAdminStatus,
 	joinPosts,
 };

@@ -21,7 +21,8 @@
 	"description": "",
 	"main": "app.js",
 	"scripts": {
-		"dev": "node --watch app.js"
+		"dev": "node --watch app.js",
+		"dev:css": "npx tailwindcss -i ./public/css/input.css -o ./public/css/output.css --watch"
 	},
 	"keywords": [],
 	"author": "",
