@@ -5,6 +5,7 @@ const { body, validationResult, matchedData } = require('express-validator');
 const alphaErr = 'Must only contain letters.';
 const lengthErr = 'must be between 2 and 10 characters';
 const secretPhrase = 'yellow';
+const adminSecretPhrase = 'yessir';
 
 const validateUser = [
 	body('firstName')
@@ -148,6 +149,26 @@ const deleteUser = async (req, res) => {
 	res.redirect('/list');
 };
 
+const getAdminPage = async (req, res) => {
+	res.render('admin');
+};
+
+const postAdminPage = async (req, res) => {
+	const { adminSecret } = req.body;
+
+	if (typeof adminSecret !== 'string') {
+		return res.status(400).render('admin', { error: 'Invalid input' });
+	}
+
+	if (adminSecret !== adminSecretPhrase) {
+		console.log(adminSecret, adminSecretPhrase);
+		return res.status(401).render('admin', { error: 'Wrong !' });
+	}
+	const user = await db.updateMembershipStatus(req.user.id);
+	const users = await db.getUsersList();
+	res.render('list', { title: `welcome to da club ${user.first_name}`, users });
+};
+
 module.exports = {
 	createUserPost,
 	createUserGet,
@@ -160,4 +181,6 @@ module.exports = {
 	userUpdatePost,
 	validateUserUpdate,
 	deleteUser,
+	getAdminPage,
+	postAdminPage,
 };
