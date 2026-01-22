@@ -164,9 +164,12 @@ const postAdminPage = async (req, res) => {
 		console.log(adminSecret, adminSecretPhrase);
 		return res.status(401).render('admin', { error: 'Wrong !' });
 	}
-	const user = await db.updateMembershipStatus(req.user.id);
+	const user = await db.updateAdminStatus(req.user.id);
 	const users = await db.getUsersList();
-	res.render('list', { title: `welcome to da club ${user.first_name}`, users });
+	res.render('list', {
+		title: `You are now an admin, ${user.first_name}!`,
+		users,
+	});
 };
 
 module.exports = {
