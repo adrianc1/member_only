@@ -50,9 +50,11 @@ const validateUserUpdate = [
 	body('username').optional().isLength({ min: 1 }),
 ];
 const getUsersList = async (req, res, next) => {
+	const current_user = req.user;
 	res.render('list', {
 		title: 'Users List',
 		users: await db.getUsersList(),
+		current_user: current_user,
 	});
 };
 
